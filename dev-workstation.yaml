@@ -1,0 +1,8 @@
+---
+- hosts: web1
+  tasks:
+    - name: Install RVM
+      import_tasks: tasks/rvm.yaml
+
+    - name: install ruby-2.7.5
+      script: scripts/install-ruby-2.7.5.sh
