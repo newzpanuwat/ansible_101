@@ -45,13 +45,13 @@ $ ansible -i inventory.cfg all -a "free -m"
 ### Execute playbook => ansible-playbook [playbookname.yaml] -i [inventory.cfg]
 $ ansible test_playbook.yaml -i inventory.cfg
 
-### ทบทวนขั้นตอน
+### ทบทวนสั้นๆ
 - มีเครื่อง server ขึ้นมาอย่างน้อย 1 เครื่อง (จาก cloud, vm, local machine ก็ได้ ลงเป็น ubuntu 20.04 lts ไว้) เพื่อทดสอบการ ssh
-- ssh ไปที่เครื่องนั้น โดยการ ใช้ user root, password ของเครื่องนั้นๆ
+- ssh ไปที่เครื่องนั้น โดยการ ใช้ user root, password ของเครื่องนั้นๆ $ ssh root@xx.xx.xx.xx
 - generate_keygen ฝั่ง master node เครื่องเรา เอาไปไว้ที่ ฝั่ง managed nodes
-- "ssh-keygen -t rsa" จะได้ public key มา ให้ทำการ copy โดยใช้คำสั่ง $ cat ./ssh/id_rsa.pub จากนั้น copy ไว้
-- ไปวางที่เครื่อง managed node โดยทำการ vi .ssh/authorized_keys จากนั้น save
-- ทดสอบการรันอีกครั้ง โดย ssh root@xx.xx.xx.xx ไปทัี่ managed node ครั้งนี้จะไม่ต้องใส่ password
+- หากยังเคย generate key ให้ใช้คำสั่ง"$ ssh-keygen -t rsa" จะได้ public key มา ให้ทำการ copy โดยใช้คำสั่ง $ cat ./ssh/id_rsa.pub จากนั้น copy ไว้
+- ไปวางที่เครื่อง managed node โดยทำการ vi .ssh/authorized_keys จากนั้น save (vim จะใช้ :x ในการ save)
+- ทดสอบการรันอีกครั้ง โดย ssh root@xx.xx.xx.xx ไปที่ managed node ครั้งนี้จะไม่ต้องใส่ password
 - สร้าง Inventory file เพื่อทำการ config
 - ทดสอบการเชื่อมต่อ master & managed node โดยการ ping
 - สร้าง Playbook file เพื่อทำการ execute สิ่งที่เราต้องการ
