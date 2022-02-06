@@ -1,0 +1,19 @@
+- 
+  name: "Allow firewall for nginx"
+  ufw:
+    port: 80
+    proto: tcp
+    rule: allow
+
+- 
+  ansible.builtin.copy:
+    dest: /var/www/html/index.nginx-debian.html
+    follow: true
+    src: /Users/newpanuwat/ansible_101/index.html
+  name: "Copy index.html from master node to public index.html"
+
+- 
+  ansible.builtin.service:
+    name: nginx
+    state: reloaded
+  name: "Reload nginx server"

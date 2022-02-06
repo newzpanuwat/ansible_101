@@ -1,0 +1,5 @@
+---
+- hosts: web1
+  tasks:
+    - name: Install docker
+      import_tasks: tasks/docker.yaml

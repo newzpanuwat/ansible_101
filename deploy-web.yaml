@@ -1,0 +1,5 @@
+- hosts: all
+  tasks:
+    -
+      name: Deploy static web page web1
+      import_tasks: tasks/web1.yaml
