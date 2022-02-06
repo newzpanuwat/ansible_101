@@ -31,3 +31,27 @@ https://codebeautify.org/yaml-validator
 
 ## Presentation slides
 https://docs.google.com/presentation/d/1YyZV-EsLiZQz5_64OsHpNIYsw8SMngfE6kwQYLBmJfY/edit?usp=sharing
+
+
+## คำสั่งเบื้องต้นในการใช้งาน ansible
+### เช็คการเชื่อมต่อระหว่าง master node & managed nodes ทั้งทมด (Ping)
+$ ansible -i inventory.cfg all -m ping
+
+ถ้าสำเร็จ จะเป็น SUCCESS สีเขียว
+
+### เช็คความจุในหน่วย MB ของ managed nodes ทั้งทมด
+$ ansible -i inventory.cfg all -a "free -m"
+
+### Execute playbook => ansible-playbook [playbookname.yaml] -i [inventory.cfg]
+$ ansible test_playbook.yaml -i inventory.cfg
+
+### ทบทวนขั้นตอน
+- มีเครื่อง server ขึ้นมาอย่างน้อย 1 เครื่อง (จาก cloud, vm, local machine ก็ได้ ลงเป็น ubuntu 20.04 lts ไว้) เพื่อทดสอบการ ssh
+- ssh ไปที่เครื่องนั้น โดยการ ใช้ user root, password ของเครื่องนั้นๆ
+- generate_keygen ฝั่ง master node เครื่องเรา เอาไปไว้ที่ ฝั่ง managed nodes
+- "ssh-keygen -t rsa" จะได้ public key มา ให้ทำการ copy โดยใช้คำสั่ง $ cat ./ssh/id_rsa.pub จากนั้น copy ไว้
+- ไปวางที่เครื่อง managed node โดยทำการ vi .ssh/authorized_keys จากนั้น save
+- ทดสอบการรันอีกครั้ง โดย ssh root@xx.xx.xx.xx ไปทัี่ managed node ครั้งนี้จะไม่ต้องใส่ password
+- สร้าง Inventory file เพื่อทำการ config
+- ทดสอบการเชื่อมต่อ master & managed node โดยการ ping
+- สร้าง Playbook file เพื่อทำการ execute สิ่งที่เราต้องการ
