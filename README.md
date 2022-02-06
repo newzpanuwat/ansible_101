@@ -1,6 +1,6 @@
-## Ansible install 
+## Ansible install ที่ Master node (Control node)
 
-#### MacOS
+### MacOS
 
 #### ถ้ายังไม่มี homebrew ลง homebrew ก่อนครับ
 
@@ -11,7 +11,7 @@ https://brew.sh/index_th
 $ brew install ansible\
 $ ansible --version
 
-#### Ubuntu
+### Ubuntu
 
 $ sudo apt update\
 $ sudo apt install software-properties-common\
@@ -19,7 +19,8 @@ $ sudo add-apt-repository --yes --update ppa:ansible/ansible\
 $ sudo apt install ansible\
 $ ansible –version
 
-
+## Ansible docs
+https://docs.ansible.com/ansible/latest/index.html
 ## Ansible built-in collections
 https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html
 ## YAML lint ( yaml validator)
